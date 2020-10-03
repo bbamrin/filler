@@ -13,21 +13,49 @@ int		strsplit_len(char **str_arr)
 
 void	strsplit_free(char **str_arr)
 {
-	while (*str_arr)
-	{
-		free(*str_arr);
-		str_arr++;
-	}
+	int	i;
+
+	i = -1;
+	while (str_arr[++i])
+		free(str_arr[i]);
 	free(str_arr);
 }
 
-void	heat_map_free(int	**heat_map, int height)
+void	int_tab_free(int **tab, int height)
 {
 	int	i;
 
 	i = -1;
 	while (++i < height)
-		free(heat_map[i]);
+		free(tab[i]);
+}
+
+void	char_tab_free(char **tab, int height)
+{
+	int	i;
+
+	i = -1;
+	while (++i < height)
+		free(tab[i]);
+}
+
+void	filler_free(t_filler *filler)
+{
+	if (filler->map && filler->map->heat_map)
+	{
+		int_tab_free(filler->map->heat_map, filler->map->height);
+		free(filler->map->heat_map);
+	}
+	if (filler->map)
+		free(filler->map);
+	if (filler->piece && filler->piece->map)
+	{
+		char_tab_free(filler->piece->map, filler->piece->height);
+		free(filler->piece->map);
+	}
+	if (filler->piece)
+		free(filler->piece);
+	free(filler);
 }
 
 int		error_gnl(char *str)
@@ -46,10 +74,5 @@ int 	error_all(char *str, char **str_arr)
 {
 	free(str);
 	strsplit_free(str_arr);
-	return (ERROR_CODE);
-}
-
-int		error_piece(t_filler *filler)
-{
 	return (ERROR_CODE);
 }

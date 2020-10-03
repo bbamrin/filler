@@ -8,6 +8,8 @@ t_filler	*init_filler()
 	{
 		ret->player = 0;
 		ret->enemy = 0;
+		ret->x = 0;
+		ret->y = 0;
 		if (!(ret->map = (t_map *)ft_memalloc(sizeof(t_map))))
 		{
 			free(ret);
