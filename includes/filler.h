@@ -6,6 +6,7 @@
 # define EMPTY_CELL  -1
 # define PLAYER_CELL -2
 # define ENEMY_CELL -3
+# define MAXINT	2147483647
 
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
@@ -45,4 +46,8 @@ int				validate_piece_head(char **str_arr);
 int				validate_piece_body(char *str);
 int				init_heat_map(t_filler *filler);
 int				error_piece(t_filler *filler);
+t_filler		*init_filler();
+int				parse_player(t_filler *filler);
+int				parse_map(t_filler *filler);
+int				parse_piece(t_filler *filler);
 #endif

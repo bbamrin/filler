@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = libft.a
-SRCS = $(shell find | awk -F '/' '/.c$$/ {print $$NF}')
+SRCS = $(shell find . | awk -F '/' '/.c$$/ {print $$NF}')
 
 OBJS = $(SRCS:.c=.o)
 

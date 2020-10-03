@@ -11,8 +11,9 @@ int		parse_player(t_filler *filler)
 		return (ERROR_CODE);
 	if (validate_player(str_arr) == ERROR_CODE)
 	{
-		free(str);
-		strsplit_free(str_arr);
+		printf("kek\n");
+		//free(str);
+		//strsplit_free(str_arr);
 		return (ERROR_CODE);
 	}
 	if(str_arr[2][1] == '1')
