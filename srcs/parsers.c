@@ -37,6 +37,7 @@ int		get_heat_map_cell(t_filler  *filler, char c)
 		return (PLAYER_CELL);
 	if (c == filler->player)
 		return (ENEMY_CELL);
+	return (ERROR_CODE);
 }
 
 int		parse_map_body(t_filler *filler)
