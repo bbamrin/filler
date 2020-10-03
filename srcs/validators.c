@@ -70,10 +70,8 @@ int validate_piece_head(char **str_arr)
 int validate_piece_body(char *str, int width)
 {
 	int i;
-	int	flag;
 
 	i = -1;
-	flag = 0;
 	while (str[++i])
 		if (!(ft_tolower(str[i]) == '*' || str[i] == '.'))
 			return (ERROR_CODE);

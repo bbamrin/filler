@@ -26,7 +26,7 @@ int	calc_piece_sum(t_filler *filler, int x, int y)
 	return ((pc == 1) ? sum : -1);
 }
 
-int	place_piece(t_filler *filler)
+void	place_piece(t_filler *filler)
 {
 	int	i;
 	int	j;

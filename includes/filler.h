@@ -58,6 +58,8 @@ int				parse_player(t_filler *filler);
 int				parse_map(t_filler *filler);
 int				parse_piece(t_filler *filler);
 void			filler_free(t_filler *filler);
-int				place_piece(t_filler *filler);
+void			place_piece(t_filler *filler);
+void			fill_heat_map(t_filler *filler);
+void			char_tab_free(char **tab, int height);
 int				calc_piece_sum(t_filler *filler, int x, int y);
 #endif
