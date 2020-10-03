@@ -1,6 +1,7 @@
 #include "../includes/filler.h"
 
 int	validate_player(char **str_arr)
+{
 	if (strsplit_len(str_arr) < 5)
 		return (ERROR_CODE);
 	if (!ft_strequ(str_arr[0], "$$$")

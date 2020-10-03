@@ -1,3 +1,4 @@
+#include "../includes/filler.h"
 
 void	init_filler(t_filler *filler)
 {

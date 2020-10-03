@@ -29,7 +29,7 @@ int		parse_player(t_filler *filler)
 	return (OK_CODE);
 }
 
-int		get_heat_map_cell(char c)
+int		get_heat_map_cell(t_filler  *filler, char c)
 {
 	if (c == '.')
 		return (EMPTY_CELL);
@@ -56,7 +56,7 @@ int		parse_map_body(t_filler *filler)
 		if (validate_map_body(str_arr) == ERROR_CODE)
 			return (error_all(str, str_arr));
 		while (++j < filler->map->width)
-			filler->map->heat_map[i][j] = get_heat_map_cell(str_arr[1][j]);
+			filler->map->heat_map[i][j] = get_heat_map_cell(filler, str_arr[1][j]);
 		strsplit_free(str_arr);
 		free(str);
 	}
@@ -95,7 +95,7 @@ int 	parse_piece_body(t_filler *filler)
 	i = -1;
 	if (!(filler->piece->map = (char **)ft_memalloc(sizeof(char *) * filler->piece->height)))
 		return (ERROR_CODE);
-	while (++i < filler->piece->height && (j = -1) == -1)
+	while (++i < filler->piece->height)
 	{
 		if (get_next_line(1, &(filler->piece->map[i])) < 0)
 			return (error_piece(filler));

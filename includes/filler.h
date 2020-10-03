@@ -33,7 +33,7 @@ typedef struct s_filler
 }				t_filler;
 
 int				strsplit_len(char **str_arr);
-int				validate_player(char *str);
+int				validate_player(char **str);
 void			strsplit_free(char **str_arr);
 int				validate_map_head(char **str_arr);
 int				validate_map_neck(char *str);
