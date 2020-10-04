@@ -34,9 +34,9 @@ int		get_heat_map_cell(t_filler  *filler, char c)
 {
 	if (c == '.')
 		return (EMPTY_CELL);
-	if (c == filler->player)
+	if (ft_tolower(c) == filler->player)
 		return (PLAYER_CELL);
-	if (c == filler->player)
+	if (ft_tolower(c) == filler->enemy)
 		return (ENEMY_CELL);
 	return (ERROR_CODE);
 }
@@ -133,10 +133,10 @@ int 	parse_piece_body(t_filler *filler)
 			return (ERROR_CODE);
 	}
 	calc_piece_true_coords(filler);
-	if (filler->piece->map[filler->piece->x_bottom_right][filler->piece->y_bottom_right] != '*')
+	if ((filler->piece->map)[filler->piece->y_bottom_right][filler->piece->x_bottom_right] != '*')
 		return (ERROR_CODE);
-	filler->piece->true_height = filler->piece->y_bottom_right - filler->piece->y_top_left + 1;
-	filler->piece->true_width = filler->piece->x_bottom_right - filler->piece->x_top_left + 1;
+	filler->piece->th = filler->piece->y_bottom_right - filler->piece->y_top_left + 1;
+	filler->piece->tw = filler->piece->x_bottom_right - filler->piece->x_top_left + 1;
 	return (OK_CODE);
 }
 

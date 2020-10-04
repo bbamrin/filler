@@ -16,15 +16,24 @@ int	main()
 	{
 		if (parse_map(filler) == ERROR_CODE)
 		{
+			ft_putstr("map error\n");
 			filler_free(filler);
 			return (ERROR_CODE);
 		}
 		if (parse_piece(filler) == ERROR_CODE)
 		{
+			ft_putstr("piece error\n");
 			filler_free(filler);
 			return (ERROR_CODE);
 		}
 		fill_heat_map(filler);
+		/*for (int g = 0; g < filler->map->height; ++g)
+		{
+			for (int k = 0; k < filler->map->width; ++k) {
+				printf("%d ", filler->map->heat_map[g][k]);
+			}
+			printf("\n");
+		}*/
 		place_piece(filler);
 		ft_putnbr(filler->x);
 		ft_putchar(' ');

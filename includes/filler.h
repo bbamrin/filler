@@ -27,8 +27,8 @@ typedef struct s_piece
 	int			y_top_left;
 	int 		x_bottom_right;
 	int			y_bottom_right;
-	int 		true_height;
-	int			true_width;
+	int 		th;
+	int			tw;
 }				t_piece;
 
 typedef struct s_filler

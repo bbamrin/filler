@@ -8,7 +8,8 @@ int	validate_player(char **str_arr)
 		|| !ft_strequ(str_arr[1], "exec")
 		|| !(ft_strequ(str_arr[2], "p1") || ft_strequ(str_arr[2], "p2"))
 		|| !ft_strequ(str_arr[3], ":")
-		|| !ft_strequ(str_arr[4], "[pkathy.filler]"))
+		|| str_arr[4][0] != '['
+		|| !ft_strstr(str_arr[4], "pkathy.filler]"))
 		return (ERROR_CODE);
 	return (OK_CODE);
 }
@@ -31,10 +32,11 @@ int	validate_map_neck(char *str, int width)
 
 	i = -1;
 	while (str[++i])
-		if (!(str[i] >= '0' && str[i] <= '9'))
+		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == ' '))
 			return (ERROR_CODE);
 	if (i != width)
-		return (ERROR_CODE);
+		return (OK_CODE);
+		//return (ERROR_CODE);
 	return (OK_CODE);
 }
 
