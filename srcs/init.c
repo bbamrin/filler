@@ -13,18 +13,19 @@ t_filler	*init_filler()
 		if (!(ret->map = (t_map *)ft_memalloc(sizeof(t_map))))
 		{
 			free(ret);
-			return (ERROR_CODE);
+			return (0);
 		}
 		if (!(ret->piece = (t_piece *)ft_memalloc(sizeof(t_piece))))
 		{
 			free(ret->map);
 			free(ret);
-			return (ERROR_CODE);
+			return (0);
 		}
 		ret->map->heat_map = 0;
+		ret->piece->height = 0;
 		return (ret);
 	}
-	return (ERROR_CODE);
+	return (0);
 }
 
 

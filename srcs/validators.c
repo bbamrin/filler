@@ -14,14 +14,23 @@ int	validate_player(char **str_arr)
 	return (OK_CODE);
 }
 
-int validate_map_head(char **str_arr)
+int validate_map_head(char **str_arr, t_filler *filler)
 {
+	//printf("%d\n", strsplit_len(str_arr));
+	int	h;
+	int	w;
 	if (strsplit_len(str_arr) != 3)
 		return (ERROR_CODE);
+	h = ft_atoi(str_arr[1]);
+	w = ft_atoi(str_arr[2]);
 	if (!ft_strequ(str_arr[0], "Plateau")
-		|| ft_atoi(str_arr[1]) <= 0
-		|| ft_atoi(str_arr[2]) <= 0
+		|| h <= 0
+		|| w <= 0
 		|| !ft_strrchr(str_arr[2], ':'))
+		return (ERROR_CODE);
+	if (filler->map->height != 0 && h != filler->map->height)
+		return (ERROR_CODE);
+	if (filler->map->width != 0 && w != filler->map->width)
 		return (ERROR_CODE);
 	return (OK_CODE);
 }

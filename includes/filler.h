@@ -1,12 +1,13 @@
 #ifndef FILLER_H
 
 # define FILLER_H
-# define ERROR_CODE 0
+# define ERROR_CODE -10
 # define OK_CODE 1
 # define EMPTY_CELL  -1
 # define PLAYER_CELL -2
 # define ENEMY_CELL -3
 # define MAXINT	2147483647
+# define MODE 0
 
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
@@ -44,7 +45,7 @@ typedef struct s_filler
 int				strsplit_len(char **str_arr);
 int				validate_player(char **str);
 void			strsplit_free(char **str_arr);
-int				validate_map_head(char **str_arr);
+int				validate_map_head(char **str_arr, t_filler *filler);
 int				validate_map_neck(char *str, int width);
 int				validate_map_body(char **str_arr, int width);
 int				error_gnl(char *str);
@@ -58,6 +59,8 @@ int				parse_player(t_filler *filler);
 int				parse_map(t_filler *filler);
 int				parse_piece(t_filler *filler);
 void			filler_free(t_filler *filler);
+void			heat_map_free(t_filler *filler);
+void			piece_free(t_filler *filler);
 void			place_piece(t_filler *filler);
 void			fill_heat_map(t_filler *filler);
 void			char_tab_free(char **tab, int height);
