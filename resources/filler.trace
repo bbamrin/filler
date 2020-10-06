@@ -1,6 +1,4 @@
-seed = 8977
-O: error on input
-./pkathy.filler: Segfault at 67
+seed = 1361
 ./pkathy.filler won
 Score:
-67AGAINST43
+1960AGAINST108
