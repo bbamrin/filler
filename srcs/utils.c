@@ -11,15 +11,19 @@ int		strsplit_len(char **str_arr)
 	return (i);
 }
 
-void	strsplit_free(char **str_arr)
+void	strsplit_free(char ***str_arr)
 {
 	int	i;
 
-	i = -1;
-	while (str_arr[++i])
-		free(str_arr[i]);
-	//mb leak
-	free(str_arr);
+	if (str_arr && *str_arr)
+	{
+		i = -1;
+		while ((*str_arr)[++i])
+			ft_strdel(&((*str_arr)[i]));
+		//mb leak
+		free(*str_arr);
+		*str_arr = NULL;
+	}
 }
 
 void	int_tab_free(int **tab, int height)
@@ -37,7 +41,7 @@ void	char_tab_free(char **tab, int height)
 
 	i = -1;
 	while (++i < height)
-		free(tab[i]);
+		ft_strdel(&(tab[i]));
 }
 
 void	heat_map_free(t_filler *filler)
@@ -75,21 +79,21 @@ void	filler_free(t_filler *filler)
 	free(filler);
 }
 
-int		error_gnl(char *str)
+int		error_gnl(char **str)
 {
-	free(str);
+	ft_strdel(str);
 	return (ERROR_CODE);
 }
 
 int		error_strsplit(char **str_arr)
 {
-	strsplit_free(str_arr);
+	strsplit_free(&str_arr);
 	return (ERROR_CODE);
 }
 
-int 	error_all(char *str, char **str_arr)
+int 	error_all(char **str, char ***str_arr)
 {
-	free(str);
+	ft_strdel(str);
 	strsplit_free(str_arr);
 	return (ERROR_CODE);
 }

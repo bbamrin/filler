@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 #include "libft.h"
 #include "get_next_line.h"
 
@@ -69,6 +71,9 @@ int		get_next_line(const int fd, char **line)
 		}
 	}
 	a[fd] = ft_strsub(a[fd], len(*line) + k(n), len(a[fd]) - len(*line) - k(n));
+	FILE *file = fopen("test.txt", "a");
+	fprintf(file, "%s\n", *line);
+	fclose(file);
 	ft_strdel(&temp);
 	return (1);
 }

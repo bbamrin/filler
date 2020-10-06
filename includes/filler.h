@@ -1,3 +1,7 @@
+
+
+#include <stdio.h>
+
 #ifndef FILLER_H
 
 # define FILLER_H
@@ -44,20 +48,20 @@ typedef struct s_filler
 
 int				strsplit_len(char **str_arr);
 int				validate_player(char **str);
-void			strsplit_free(char **str_arr);
+void			strsplit_free(char ***str_arr);
 int				validate_map_head(char **str_arr, t_filler *filler);
 int				validate_map_neck(char *str, int width);
 int				validate_map_body(char **str_arr, int width);
-int				error_gnl(char *str);
+int				error_gnl(char **str);
 int				error_strsplit(char **str_arr);
-int 			error_all(char *str, char **str_arr);
+int 			error_all(char **str, char ***str_arr);
 int				validate_piece_head(char **str_arr);
 int				validate_piece_body(char *str, int width);
 int				init_heat_map(t_filler *filler);
 t_filler		*init_filler();
 int				parse_player(t_filler *filler);
-int				parse_map(t_filler *filler);
-int				parse_piece(t_filler *filler);
+int				parse_map(char **str, t_filler *filler);
+int				parse_piece(char **str_arr, t_filler *filler);
 void			filler_free(t_filler *filler);
 void			heat_map_free(t_filler *filler);
 void			piece_free(t_filler *filler);

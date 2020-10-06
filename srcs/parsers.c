@@ -5,14 +5,17 @@ int		parse_player(t_filler *filler)
 	char	*str;
 	char	**str_arr;
 
-	if (get_next_line(MODE, &str) < 0)
+	str = 0;
+	if (get_next_line(MODE, &str) <= 0)
 		return (ERROR_CODE);
+	if (!str)
+		return (error_gnl(&str));
 	if (!(str_arr = ft_strsplit(str, ' ')))
 		return (ERROR_CODE);
 	if (validate_player(str_arr) == ERROR_CODE)
 	{
-		free(str);
-		strsplit_free(str_arr);
+		ft_strdel(&str);
+		strsplit_free(&str_arr);
 		return (ERROR_CODE);
 	}
 	if(str_arr[2][1] == '1')
@@ -25,8 +28,8 @@ int		parse_player(t_filler *filler)
 		filler->player = 'x';
 		filler->enemy = 'o';
 	}
-	free(str);
-	strsplit_free(str_arr);
+	ft_strdel(&str);
+	strsplit_free(&str_arr);
 	return (OK_CODE);
 }
 
@@ -55,49 +58,26 @@ int		parse_map_body(t_filler *filler)
 			//printf("h 5\n");
 			//return (ERROR_CODE);
 		}*/
-		get_next_line(MODE, &str);
+		if (get_next_line(MODE, &str) <= 0)
+			return (ERROR_CODE);
 		if (!(str_arr = ft_strsplit(str, ' ')))
-			return (error_gnl(str));
+			return (error_gnl(&str));
 		if (validate_map_body(str_arr, filler->map->width) == ERROR_CODE) {
 			printf("h 6\n");
-			return (error_all(str, str_arr));
+			return (error_all(&str, &str_arr));
 		}
 		while (++j < filler->map->width)
 			filler->map->heat_map[i][j] = get_heat_map_cell(filler, str_arr[1][j]);
-		strsplit_free(str_arr);
+		strsplit_free(&str_arr);
 		free(str);
 	}
 	return (OK_CODE);
 }
 
-int		parse_map(t_filler *filler)
+int		parse_map(char **str_arr, t_filler *filler)
 {
-	char	*str;
-	char	**str_arr;
-
-	if (get_next_line(MODE, &str) < 0) {
-		printf("h 0\n");
-		return (ERROR_CODE);
-	}
-	if (!(str_arr = ft_strsplit(str, ' ')))
-		return (error_gnl(str));
-	if	(validate_map_head(str_arr, filler) == ERROR_CODE) {
-		printf("h 1\n");
-		return (error_all(str, str_arr));
-	}
-	free(str);
 	filler->map->height = ft_atoi(str_arr[1]);
 	filler->map->width = ft_atoi(str_arr[2]);
-	strsplit_free(str_arr);
-	if (get_next_line(MODE, &str) < 0){
-		printf("h 2\n");
-		return (ERROR_CODE);
-	}
-	if (validate_map_neck(str, filler->map->width) == ERROR_CODE) {
-		printf("h 3\n");
-		return (error_gnl(str));
-	}
-	free(str);
 	if (init_heat_map(filler) == ERROR_CODE) {
 		printf("h 4\n");
 		return (ERROR_CODE);
@@ -168,7 +148,7 @@ int 	parse_piece_body(t_filler *filler)
 		return (ERROR_CODE);
 	while (++i < filler->piece->height)
 	{
-		if (get_next_line(MODE, &(filler->piece->map[i])) < 0)
+		if (get_next_line(MODE, &(filler->piece->map[i])) <= 0)
 			return (ERROR_CODE);
 		if (validate_piece_body(filler->piece->map[i], filler->piece->width) == ERROR_CODE)
 			return (ERROR_CODE);
@@ -186,23 +166,9 @@ int 	parse_piece_body(t_filler *filler)
 	return (OK_CODE);
 }
 
-int		parse_piece(t_filler *filler)
+int		parse_piece(char **str_arr,t_filler *filler)
 {
-	char	*str;
-	char	**str_arr;
-
-	if (get_next_line(MODE, &str) < 0)
-		return (ERROR_CODE);
-	if (!(str_arr = ft_strsplit(str, ' ')))
-		return (error_gnl(str));
-	if	(validate_piece_head(str_arr) == ERROR_CODE)
-		return (error_all(str,str_arr));
-	free(str);
-
 	filler->piece->height = ft_atoi(str_arr[1]);
 	filler->piece->width = ft_atoi(str_arr[2]);
-
-	strsplit_free(str_arr);
-	//ft_putnbr(filler->piece->height);
 	return (parse_piece_body(filler));
 }
