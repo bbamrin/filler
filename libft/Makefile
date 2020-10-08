@@ -23,7 +23,7 @@ $(NAME): $(OBJS)
 	@echo "\033[104;34mLIBFT  DONE\033[0m"
 
 %.o:%.c
-	gcc -Wall -Wextra -Werror -I ./ -c $< -o $@
+	gcc -Wall -Wextra -O2 -I ./ -c $< -o $@
 clean:
 	@/bin/rm -rf $(OBJS)
 

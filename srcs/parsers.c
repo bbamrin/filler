@@ -33,7 +33,7 @@ int		parse_player(t_filler *filler)
 	return (OK_CODE);
 }
 
-int		get_heat_map_cell(t_filler  *filler, char c)
+/*int		get_heat_map_cell(t_filler  *filler, char c)
 {
 	if (c == '.')
 		return (EMPTY_CELL);
@@ -43,8 +43,8 @@ int		get_heat_map_cell(t_filler  *filler, char c)
 		return (ENEMY_CELL);
 	return (ERROR_CODE);
 }
-
-int		parse_map_body(t_filler *filler)
+*/
+/*int		parse_map_body(t_filler *filler)
 {
 	int		i;
 	int		j;
@@ -54,10 +54,10 @@ int		parse_map_body(t_filler *filler)
 	i = -1;
 	while (++i < filler->map->height && (j = -1) == -1)
 	{
-		/*if () {
+		if () {
 			//printf("h 5\n");
 			//return (ERROR_CODE);
-		}*/
+		}
 		if (get_next_line(MODE, &str) <= 0)
 			return (ERROR_CODE);
 		if (!(str_arr = ft_strsplit(str, ' ')))
@@ -72,9 +72,9 @@ int		parse_map_body(t_filler *filler)
 		free(str);
 	}
 	return (OK_CODE);
-}
+}*/
 
-int		parse_map(char **str_arr, t_filler *filler)
+/*int		parse_map(char **str_arr, t_filler *filler)
 {
 	filler->map->height = ft_atoi(str_arr[1]);
 	filler->map->width = ft_atoi(str_arr[2]);
@@ -83,62 +83,9 @@ int		parse_map(char **str_arr, t_filler *filler)
 		return (ERROR_CODE);
 	}
 	return (parse_map_body(filler));
-}
+}*/
 
-int		get_y(t_filler *filler, int top)
-{
-	int	i;
-	int j;
 
-	i = -1;
-	if (top)
-	{
-		while (++i < filler->piece->height && (j = -1) == -1) {
-			while (++j < filler->piece->width)
-				if (filler->piece->map[i][j] == '*')
-					return (i);
-		}
-	}
-	else
-	{
-		i = filler->piece->height;
-		while (--i >=0 && (j = filler->piece->width) == filler->piece->width)
-		{
-			while (--j >= 0)
-				if (filler->piece->map[i][j] == '*')
-					return (i);
-		}
-	}
-	return (ERROR_CODE);
-}
-
-int 	get_x(t_filler *filler, int left)
-{
-	int	i;
-	int j;
-
-	if (left)
-	{
-		i = -1;
-		while (++i < filler->piece->width && (j = -1) == -1)
-		{
-			while (++j < filler->piece->height)
-				if (filler->piece->map[j][i] == '*')
-					return (i);
-		}
-	}
-	else
-	{
-		i = filler->piece->width;
-		while (--i >=0 && (j = filler->piece->height) == filler->piece->height)
-		{
-			while (--j >= 0)
-				if (filler->piece->map[j][i] == '*')
-					return (i);
-		}
-	}
-	return (ERROR_CODE);
-}
 int 	parse_piece_body(t_filler *filler)
 {
 	int		i;
@@ -153,7 +100,7 @@ int 	parse_piece_body(t_filler *filler)
 		if (validate_piece_body(filler->piece->map[i], filler->piece->width) == ERROR_CODE)
 			return (ERROR_CODE);
 	}
-	if ((filler->piece->y_top_left = get_y(filler, 1)) == ERROR_CODE)
+	/*if ((filler->piece->y_top_left = get_y(filler, 1)) == ERROR_CODE)
 		return (ERROR_CODE);
 	if ((filler->piece->y_bottom_right = get_y(filler, 0)) == ERROR_CODE)
 		return (ERROR_CODE);
@@ -162,7 +109,7 @@ int 	parse_piece_body(t_filler *filler)
 	if ((filler->piece->x_bottom_right = get_x(filler, 0)) == ERROR_CODE)
 		return (ERROR_CODE);
 	filler->piece->th = filler->piece->y_bottom_right - filler->piece->y_top_left + 1;
-	filler->piece->tw = filler->piece->x_bottom_right - filler->piece->x_top_left + 1;
+	filler->piece->tw = filler->piece->x_bottom_right - filler->piece->x_top_left + 1;*/
 	return (OK_CODE);
 }
 

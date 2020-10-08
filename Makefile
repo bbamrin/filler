@@ -1,6 +1,6 @@
 LIB     = libft/
 NAME    = pkathy.filler
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -Wall -Wextra -Werror -O2
 CC      = gcc
 SRC_DIR	= srcs/
 

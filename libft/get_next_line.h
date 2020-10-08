@@ -16,7 +16,14 @@
 # include <sys/types.h>
 # include <unistd.h>
 # include <stdlib.h>
-# define BUFF_SIZE 100
+# define BUFF_SIZE 64
+
+typedef struct			s_fd_list
+{
+	void					*content;
+	int						fd_num;
+	struct s_fd_list		*next;
+}						t_fd_list;
 
 int	get_next_line(const int fd, char **line);
 

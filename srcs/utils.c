@@ -73,7 +73,6 @@ void	filler_free(t_filler *filler)
 	heat_map_free(filler);
 	if (filler->map)
 		free(filler->map);
-	piece_free(filler);
 	if (filler->piece)
 		free(filler->piece);
 	free(filler);

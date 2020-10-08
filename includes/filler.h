@@ -67,6 +67,7 @@ void			heat_map_free(t_filler *filler);
 void			piece_free(t_filler *filler);
 void			place_piece(t_filler *filler);
 void			fill_heat_map(t_filler *filler);
+int				mdist(t_filler *filler, int i, int j);
 void			char_tab_free(char **tab, int height);
 int				calc_piece_sum(t_filler *filler, int x, int y);
 #endif

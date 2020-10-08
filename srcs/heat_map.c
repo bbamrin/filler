@@ -1,26 +1,32 @@
 #include "../includes/filler.h"
 
-int 	ft_abs(int n)
+int 	a(int n)
 {
 	return (n > 0 ? n : -1 * n);
 }
 
-int 	calc_dist(t_filler *filler, int i, int j)
+int 	mdist(t_filler *filler, int i, int j)
 {
 	int min_d;
 	int d;
 	int y;
 	int x;
 
-	y = -1;
+	y = 0;
 	min_d = MAXINT;
-	while(++y < filler->map->height)
+	while(filler->map->heat_map[y] && (y < filler->map->height))
 	{
-		x = -1;
-		while (++x < filler->map->width)
-			if (filler->map->heat_map[y][x] == ENEMY_CELL && ((d = ft_abs(x - j) + ft_abs(y - i)) <= min_d))
+
+		x = 0;
+		while (filler->map->heat_map[y][x] && x < filler->map->width)
+		{
+			if (filler->map->heat_map[y][x] == ENEMY_CELL && ((d = a(x - j) + a(y - i)) <= min_d))
 				min_d = d;
+			x++;
+		}
+		y++;
 	}
+	//printf("y: %d x: %d dist: %d\n", i, j, min_d);
 	return (min_d);
 }
 
@@ -29,12 +35,21 @@ void	fill_heat_map(t_filler *filler)
 	int	i;
 	int	j;
 
-	i = -1;
-	while (++i < filler->map->height)
+	i = 0;
+	//printf("heat map1\n");
+	while (filler->map->heat_map[i] && i < filler->map->height)
 	{
-		j = -1;
-		while (++j < filler->map->width)
+		//printf("s\n");
+		j = 0;
+		while (filler->map->heat_map[i][j] && j < filler->map->width)
+		{
+			//printf("a\n");
 			if (filler->map->heat_map[i][j] == EMPTY_CELL)
-				filler->map->heat_map[i][j] = calc_dist(filler, i, j);
+				filler->map->heat_map[i][j] = mdist(filler, i, j);
+			j++;
+		}
+
+		i++;
 	}
+	//printf("heat map2\n");
 }
