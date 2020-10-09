@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pkathy <pkathy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/04 19:54:18 by pkathy            #+#    #+#             */
+/*   Updated: 2019/09/04 19:57:41 by pkathy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/filler.h"
 
-t_filler	*init_filler()
+t_filler	*init_filler(void)
 {
 	t_filler	*ret;
 
@@ -21,27 +33,9 @@ t_filler	*init_filler()
 			free(ret);
 			return (0);
 		}
-		ret->map->heat_map = 0;
+		ret->map->dmap = 0;
 		ret->piece->height = 0;
 		return (ret);
 	}
 	return (0);
-}
-
-
-int			init_heat_map(t_filler *filler)
-{
-	int	i;
-
-	i = -1;
-	if (filler->map->heat_map == 0)
-	{
-		if (!(filler->map->heat_map = (int **)ft_memalloc(sizeof(int *) * filler->map->height)))
-			return (ERROR_CODE);
-		while (++i < filler->map->height)
-			if (!(filler->map->heat_map[i] = (int *)ft_memalloc(sizeof(int) * filler->map->width)))
-				return (ERROR_CODE);
-	}
-	return (OK_CODE);
-	//creates map with size x*y
 }

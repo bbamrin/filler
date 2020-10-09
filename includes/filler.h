@@ -1,12 +1,19 @@
-
-
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   filler.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pkathy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/16 20:30:46 by pkathy            #+#    #+#             */
+/*   Updated: 2019/09/26 19:07:45 by pkathy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FILLER_H
 
 # define FILLER_H
 # define ERROR_CODE -10
-# define OK_CODE 1
 # define EMPTY_CELL  -1
 # define PLAYER_CELL -2
 # define ENEMY_CELL -3
@@ -18,56 +25,41 @@
 
 typedef struct	s_map
 {
-	int			height;
-	int			width;
-	int			**heat_map;
+	int			h;
+	int			w;
+	int			**dmap;
 }				t_map;
 
-typedef struct s_piece
+typedef struct	s_piece
 {
 	char		**map;
 	int			height;
-	int 		width;
+	int			width;
 	int			x_top_left;
 	int			y_top_left;
-	int 		x_bottom_right;
+	int			x_bottom_right;
 	int			y_bottom_right;
-	int 		th;
+	int			th;
 	int			tw;
 }				t_piece;
 
-typedef struct s_filler
+typedef struct	s_filler
 {
 	t_map		*map;
 	t_piece		*piece;
 	char		player;
 	char		enemy;
 	int			x;
-	int 		y;
+	int			y;
 }				t_filler;
 
-int				strsplit_len(char **str_arr);
-int				validate_player(char **str);
-void			strsplit_free(char ***str_arr);
-int				validate_map_head(char **str_arr, t_filler *filler);
-int				validate_map_neck(char *str, int width);
-int				validate_map_body(char **str_arr, int width);
-int				error_gnl(char **str);
-int				error_strsplit(char **str_arr);
-int 			error_all(char **str, char ***str_arr);
-int				validate_piece_head(char **str_arr);
-int				validate_piece_body(char *str, int width);
-int				init_heat_map(t_filler *filler);
 t_filler		*init_filler();
-int				parse_player(t_filler *filler);
-int				parse_map(char **str, t_filler *filler);
-int				parse_piece(char **str_arr, t_filler *filler);
 void			filler_free(t_filler *filler);
 void			heat_map_free(t_filler *filler);
-void			piece_free(t_filler *filler);
-void			place_piece(t_filler *filler);
-void			fill_heat_map(t_filler *filler);
+void			place_piece(t_filler *filler, int i, int j);
 int				mdist(t_filler *filler, int i, int j);
-void			char_tab_free(char **tab, int height);
 int				calc_piece_sum(t_filler *filler, int x, int y);
+void			calc_size(int i, int j, t_filler *filler);
+int				abs(int n);
+int				parse(t_filler *filler, char **str);
 #endif

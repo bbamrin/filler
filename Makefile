@@ -21,7 +21,7 @@ lib:
 $(OBJ_DIR):
 	@mkdir obj
 
-$(OBJ_DIR)%.o:$(SRC_DIR)%.c
+$(OBJ_DIR)%.o:$(SRC_DIR)%.c includes/filler.h
 	gcc $(CFLAGS) -c -I./$(HEADER) $< -o $@
 
 clean:

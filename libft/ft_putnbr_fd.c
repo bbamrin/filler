@@ -14,14 +14,18 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
+	int	why;
+
 	if (n == -2147483648)
 	{
-		write(fd, "-2147483648", 11);
+		why = write(fd, "-2147483648", 11);
+		why++;
 		return ;
 	}
 	if (n < 0)
 	{
-		write(fd, "-", 1);
+		why = write(fd, "-", 1);
+		why++;
 		n *= -1;
 	}
 	if (n >= 10)

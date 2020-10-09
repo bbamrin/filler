@@ -22,8 +22,8 @@ $(NAME): $(OBJS)
 	@ranlib $(NAME)
 	@echo "\033[104;34mLIBFT  DONE\033[0m"
 
-%.o:%.c
-	gcc -Wall -Wextra -O2 -I ./ -c $< -o $@
+%.o:%.c libft.h get_next_line.h
+	gcc -Wall -Wextra -Werror -O2 -I ./ -c $< -o $@
 clean:
 	@/bin/rm -rf $(OBJS)
 
